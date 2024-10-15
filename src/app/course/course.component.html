@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col text-center">
+    <app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+    <!-- bind custom property to child components -->
+    <app-filter
+      [total]="getTotalCourse()"
+      [free]="getTotalFreeCourse()"
+      [premium]="getTotalPremiumCourse()"
+      (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)"
+    ></app-filter>
+  </div>
+</div>
+
+<div class="row">
+  <ng-container *ngFor="let course of courses">
+    <div
+      class="col-md-4 mb-4"
+      *ngIf="
+        courseCountRadioButton === 'All' ||
+        courseCountRadioButton === course.type
+      "
+    >
+      <div
+        class="card text-center"
+        *ngIf="
+          searchText === '' ||
+          course.name.toLowerCase().includes(searchText.toLowerCase())
+        "
+      >
+        <img
+          [src]="course.image"
+          class="card-img-top"
+          [alt]="course.name"
+          style="height: 200px; object-fit: cover"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ course.name }}</h5>
+          <p class="card-text">{{ course.description }}</p>
+          <div class="mb-3 d-flex justify-content-evenly">
+            <strong
+              [ngStyle]="{
+                color: course.type === 'Premium' ? '#ea580c' : 'green'
+              }"
+              >{{ course.type }}</strong
+            >
+            <span><strong>Price: </strong> ${{ course.price }}</span>
+          </div>
+          <div class="mt-auto d-flex justify-content-evenly">
+            <a
+              href="#"
+              class="btn col-5"
+              [ngStyle]="{
+                'background-color': '#fb923c',
+                color: '#9a3412',
+                'font-weight': '600'
+              }"
+              >Buy Now</a
+            >
+            <a
+              href="#"
+              class="btn col-5"
+              [ngStyle]="{
+                'background-color': '#86efac',
+                color: '#047857',
+                'font-weight': '600'
+              }"
+              >Show Details</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
