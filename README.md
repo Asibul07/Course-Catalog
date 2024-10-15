@@ -24,12 +24,12 @@ Make sure you have the following installed:
 
 ### Installation
 1. Clone the repository:
-   git clone https://github.com/yourusername/Course-Catalog.git
+   git clone https://github.com/Asibul07/Course-Catalog.git
 
-2. Navigate to the project directory:
+3. Navigate to the project directory:
    cd Course-Catalog
 
-3. Install the dependencies:
+4. Install the dependencies:
    npm install
 
 ## Running the Application
